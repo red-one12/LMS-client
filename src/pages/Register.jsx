@@ -1,45 +1,52 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Register = () => {
+  const { createNewUser } = useContext(AuthContext);
+  const [error, setError] = useState(""); 
 
-  const {createNewUser} = useContext(AuthContext)
-
-
-
-  const handleRegister = e => {
+  const handleRegister = (e) => {
     e.preventDefault();
-    // console.log('hello');
+    setError(""); 
+
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
     const photoURL = form.photoURL.value;
     const password = form.password.value;
 
-    console.log(name, email, photoURL, password);
+   
+    if (!/[A-Z]/.test(password)) {
+      setError("Password must have at least one uppercase letter.");
+      return;
+    }
+    if (!/[a-z]/.test(password)) {
+      setError("Password must have at least one lowercase letter.");
+      return;
+    }
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters long.");
+      return;
+    }
 
     createNewUser(email, password)
-    .then(result => {
-      console.log(result.user);
-    })
-    .catch(error => {
-      console.log(error.message);
-    })
-
-
-   
-    
-    
-    
-  }
-
-
+      .then((result) => {
+        console.log(result.user);
+        alert("Registration successful!"); 
+        form.reset(); 
+      })
+      .catch((error) => {
+        console.error(error.message);
+        setError(error.message); 
+      });
+  };
 
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
       <div className="w-full max-w-md bg-white rounded shadow-md p-6">
         <h1 className="text-2xl font-bold mb-4 text-center">Register</h1>
+        
         <form onSubmit={handleRegister}>
           <div className="mb-4">
             <label htmlFor="name" className="block text-sm font-medium text-gray-700">
@@ -85,6 +92,9 @@ const Register = () => {
               placeholder="Enter your password"
             />
           </div>
+          {error && (
+          <p className="text-red-500 text-sm mb-4">{error}</p> 
+        )}
           <div className="flex items-center justify-between mb-4">
             <button
               type="submit"
