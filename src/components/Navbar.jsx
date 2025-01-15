@@ -2,19 +2,59 @@ import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const links = (
-    <div className="flex gap-10">
-      <NavLink to="/">Home</NavLink>
-      <NavLink to='/allBooks'>All Books</NavLink>
-      <NavLink to='/addBooks'>Add Books</NavLink>
-      <NavLink to='/borrowedBooks'>Borrowed Books</NavLink>
-    </div>
+    <>
+      <li>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? "text-[#4CAF50]" : "hover:text-[#4CAF50]"
+          }
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/allBooks"
+          className={({ isActive }) =>
+            isActive ? "text-[#4CAF50]" : "hover:text-[#4CAF50]"
+          }
+        >
+          All Books
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/addBooks"
+          className={({ isActive }) =>
+            isActive ? "text-[#4CAF50]" : "hover:text-[#4CAF50]"
+          }
+        >
+          Add Books
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/borrowedBooks"
+          className={({ isActive }) =>
+            isActive ? "text-[#4CAF50]" : "hover:text-[#4CAF50]"
+          }
+        >
+          Borrowed Books
+        </NavLink>
+      </li>
+    </>
   );
 
   return (
     <div className="navbar bg-base-100">
+  
       <div className="navbar-start">
+  
+
+
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -29,24 +69,31 @@ const Navbar = () => {
                 d="M4 6h16M4 12h8m-8 6h16"
               />
             </svg>
-          </div>
+          </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             {links}
           </ul>
         </div>
+      
         <a className="btn btn-ghost text-2xl font-bold">LMS</a>
       </div>
+
+
+
+
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
+
+      
       <div className="navbar-end flex gap-2">
-        <Link>
-          <button className="btn">Log In</button>
+        <Link to="/login">
+          <button className="btn bg-[#007BFF] border-none">Log In</button>
         </Link>
-        <Link>
+        <Link to="/register">
           <button className="btn">Register</button>
         </Link>
       </div>
