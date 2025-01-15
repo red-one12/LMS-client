@@ -1,8 +1,14 @@
+import BookCategories from "../components/BookCategories";
+import Slider from "../components/Slider";
 
 const Home = () => {
   return (
     <div>
-      hello from home
+      <Slider></Slider>
+
+
+
+      <BookCategories></BookCategories>
     </div>
   );
 };
