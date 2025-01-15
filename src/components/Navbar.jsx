@@ -1,6 +1,23 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
+import { Tooltip } from 'react-tooltip'
 
 const Navbar = () => {
+  const { user, logOutUser } = useContext(AuthContext);
+  console.log(user);
+
+  const handleLogout = () => {
+    logOutUser()
+    .then(() => {
+      console.log('success log out');
+    })
+    .catch(error => {
+      console.log('error',error.message);
+    })
+  }
+  
+
   const links = (
     <>
       <li>
@@ -48,11 +65,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar bg-base-100">
-  
       <div className="navbar-start">
-  
-
-
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
@@ -77,25 +90,35 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-      
         <a className="btn btn-ghost text-2xl font-bold">LMS</a>
       </div>
-
-
-
 
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
 
-      
       <div className="navbar-end flex gap-2">
-        <Link to="/login">
-          <button className="btn bg-[#007BFF] border-none">Log In</button>
-        </Link>
-        <Link to="/register">
-          <button className="btn">Register</button>
-        </Link>
+        {user ? (
+          <>
+            <img src={user.photoURL} className="w-8 h-8 rounded-full" 
+            data-tooltip-id="user-tooltip"
+            data-tooltip-content={user.displayName || "User"}
+            alt="" />
+            <Tooltip id="user-tooltip" place="left" />
+            <button onClick={handleLogout} className="btn bg-red-500 border-none hover:bg-red-600">
+              Log Out
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/login">
+              <button className="btn bg-[#007BFF] border-none">Log In</button>
+            </Link>
+            <Link to="/register">
+              <button className="btn">Register</button>
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
