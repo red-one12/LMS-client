@@ -32,7 +32,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/allBooks"
+          to={user ? '/allBooks' : '/register'}
           className={({ isActive }) =>
             isActive ? "text-[#4CAF50]" : "hover:text-[#4CAF50]"
           }
@@ -42,7 +42,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/addBooks"
+          to={user ? '/addBooks' : '/register'}
           className={({ isActive }) =>
             isActive ? "text-[#4CAF50]" : "hover:text-[#4CAF50]"
           }
@@ -52,7 +52,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/borrowedBooks"
+          to={user ? '/borrowedBooks' : '/register'}
           className={({ isActive }) =>
             isActive ? "text-[#4CAF50]" : "hover:text-[#4CAF50]"
           }
