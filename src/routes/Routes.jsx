@@ -10,6 +10,8 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import CategoryBooksPage from "../pages/CategoryBooksPage";
 import DetailsBook from "../pages/DetailsBook";
+import UpdateBook from "../components/UpdateBook";
+import PrivateRoute from "./PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -23,15 +25,15 @@ const router = createBrowserRouter([
       },
       {
         path: '/allBooks',
-        element: <AllBooks></AllBooks>
+        element: <PrivateRoute><AllBooks></AllBooks></PrivateRoute>
       },
       {
         path: '/addBooks',
-        element: <AddBooks></AddBooks>
+        element: <PrivateRoute><AddBooks></AddBooks></PrivateRoute>
       },
       {
         path: '/borrowedBooks',
-        element: <BorrowedBooks></BorrowedBooks>
+        element: <PrivateRoute><BorrowedBooks></BorrowedBooks></PrivateRoute>
       },
       {
         path: '/books/:category',
@@ -40,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: '/details/:id',
         element: <DetailsBook></DetailsBook>
+      },
+      {
+        path: '/updateBook/:id',
+        element: <UpdateBook></UpdateBook>
       }
     ]
   },

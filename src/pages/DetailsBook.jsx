@@ -84,24 +84,29 @@ const DetailsBook = () => {
           <dialog id="borrow_modal" className="modal modal-bottom sm:modal-middle">
             <form className="modal-box" onSubmit={handleBorrow}>
               <h3 className="font-bold text-lg">Borrow Book</h3>
-              <p className="py-4">Fill out the form below to borrow this book:</p>
+              <p className="py-4">Fill out the form to borrow this book:</p>
 
+              <div className="flex items-center">
               <label className="font-semibold">Name:</label>
               <input
                 type="text"
                 value={user?.displayName || ""}
                 readOnly
-                className="input input-bordered mb-2"
+                className="input input-bordered mb-2 w-full"
               />
+              </div>
 
+              <div className="flex items-center">
               <label className="font-semibold">Email:</label>
               <input
                 type="email"
                 value={user?.email || ""}
                 readOnly
-                className="input input-bordered mb-2"
+                className="input input-bordered mb-2 w-full"
               />
+              </div>
 
+              <div>
               <label className="font-semibold">Return Date:</label>
               <input
                 type="date"
@@ -109,6 +114,7 @@ const DetailsBook = () => {
                 className="input input-bordered mb-4"
                 required
               />
+              </div>
 
               <div className="modal-action">
                 <button type="submit" className="btn btn-primary">
