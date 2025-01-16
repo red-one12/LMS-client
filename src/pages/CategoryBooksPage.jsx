@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const CategoryBooksPage = () => {
   const { category } = useParams(); 
@@ -25,9 +25,13 @@ const CategoryBooksPage = () => {
               <p className="text-gray-600">Category: {book.category}</p>
               <p className="text-gray-600">Quantity: {book.quantity}</p>
               <p className="text-gray-600">Rating: {book.rating}</p>
+              <Link to={`/details/${book._id}`}>
+              
               <button className="mt-4 px-4 py-2 bg-blue-500 text-white font-medium rounded hover:bg-blue-600">
                 Details
               </button>
+              
+              </Link>
             </div>
           </div>
         ))}
