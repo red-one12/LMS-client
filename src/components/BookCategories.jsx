@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 const BookCategories = () => {
   const [categories, setCategories] = useState([]);
@@ -28,12 +30,19 @@ const BookCategories = () => {
             <div className="p-4">
               <h2 className="text-xl font-semibold mb-2">{category.name}</h2>
               <p className="text-gray-600">{category.description}</p>
-              <button
-                onClick={() => console.log(`Navigating to ${category.name}`)}
-                className="mt-4 px-4 py-2 bg-blue-500 text-white font-medium rounded hover:bg-blue-600"
-              >
-                Explore {category.name}
-              </button>
+
+
+
+
+              <Link to={`/books/${category.name}`}>
+                <button className="mt-4 px-4 py-2 bg-blue-500 text-white font-medium rounded hover:bg-blue-600">
+                  Explore {category.name}
+                </button>
+              </Link>
+
+
+
+
             </div>
           </div>
         ))}
