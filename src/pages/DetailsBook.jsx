@@ -16,35 +16,7 @@ const DetailsBook = () => {
       });
   }, [id]);
 
-  const handleBorrow = async (event) => {
-    event.preventDefault();
-    const returnDate = event.target.returnDate.value;
-
-    const borrowData = {
-      user: {
-        name: user.displayName,
-        email: user.email,
-      },
-      returnDate,
-    };
-
-    try {
-      const response = await fetch(`http://localhost:5000/borrow/${id}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(borrowData),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        alert(data.message);
-        setBook((prev) => ({ ...prev, quantity: prev.quantity - 1 }));
-      } else {
-        alert(data.message);
-      }
-    } catch (error) {
-      console.error("Error borrowing book:", error);
-    }
-  };
+  
 
   if (!user) {
     navigate("/login");
@@ -54,7 +26,6 @@ const DetailsBook = () => {
   return (
     <div className="flex flex-col justify-center items-center mt-10">
       <div className="flex">
-       
         <div>
           <img
             src={book.image}
@@ -63,7 +34,6 @@ const DetailsBook = () => {
           />
         </div>
 
-     
         <div className="text-center lg:text-left">
           <h1 className="text-3xl font-bold">{book.name}</h1>
           <p className="text-gray-600 text-lg">by {book.author}</p>
@@ -71,7 +41,6 @@ const DetailsBook = () => {
           <p className="text-gray-500 text-md">Quantity: {book.quantity}</p>
           <p className="text-yellow-500 font-semibold">Rating: {book.rating}</p>
 
-       
           <button
             onClick={() => document.getElementById("borrow_modal").showModal()}
             className="btn btn-accent mt-4"
@@ -80,40 +49,39 @@ const DetailsBook = () => {
             Borrow
           </button>
 
-     
           <dialog id="borrow_modal" className="modal modal-bottom sm:modal-middle">
-            <form className="modal-box" onSubmit={handleBorrow}>
+            <form className="modal-box">
               <h3 className="font-bold text-lg">Borrow Book</h3>
               <p className="py-4">Fill out the form to borrow this book:</p>
 
               <div className="flex items-center">
-              <label className="font-semibold">Name:</label>
-              <input
-                type="text"
-                value={user?.displayName || ""}
-                readOnly
-                className="input input-bordered mb-2 w-full"
-              />
+                <label className="font-semibold">Name:</label>
+                <input
+                  type="text"
+                  value={user?.displayName || ""}
+                  readOnly
+                  className="input input-bordered mb-2 w-full"
+                />
               </div>
 
               <div className="flex items-center">
-              <label className="font-semibold">Email:</label>
-              <input
-                type="email"
-                value={user?.email || ""}
-                readOnly
-                className="input input-bordered mb-2 w-full"
-              />
+                <label className="font-semibold">Email:</label>
+                <input
+                  type="email"
+                  value={user?.email || ""}
+                  readOnly
+                  className="input input-bordered mb-2 w-full"
+                />
               </div>
 
               <div>
-              <label className="font-semibold">Return Date:</label>
-              <input
-                type="date"
-                name="returnDate"
-                className="input input-bordered mb-4"
-                required
-              />
+                <label className="font-semibold">Return Date:</label>
+                <input
+                  type="date"
+                  name="returnDate"
+                  className="input input-bordered mb-4"
+                  required
+                />
               </div>
 
               <div className="modal-action">
