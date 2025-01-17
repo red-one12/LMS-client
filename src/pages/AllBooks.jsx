@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ReactStars from "react-rating-stars-component";
 
 const AllBooks = () => {
   const [books, setBooks] = useState([]);
@@ -11,9 +12,6 @@ const AllBooks = () => {
         setBooks(data);
       });
   }, []);
-
-
-
 
   return (
     <div className="container mx-auto mt-8">
@@ -29,7 +27,16 @@ const AllBooks = () => {
             <h2 className="text-xl font-semibold">{book.name}</h2>
             <p className="text-gray-600">Author: {book.author}</p>
             <p className="text-gray-500">Category: {book.category}</p>
-            <p className="text-yellow-500">Rating: {book.rating}</p>
+            <div className="flex items-center mt-2">
+              <ReactStars
+                count={5}
+                value={book.rating}
+                edit={false} 
+                size={24}
+                activeColor="#ffd700"
+              />
+              <span className="ml-2 text-gray-600">({book.rating})</span>
+            </div>
             <Link to={`/updateBook/${book._id}`}>
               <button className="btn btn-accent mt-4">Update</button>
             </Link>
