@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const DetailsBook = () => {
   const { id } = useParams();
@@ -47,14 +48,18 @@ const DetailsBook = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.insertResult?.insertedId) {
-          alert('Book borrowed successfully');
-          // Decrease quantity locally to update UI
+          Swal.fire({
+                                title: "Book Borrowed Successfully!",
+                                icon: "success",
+                                draggable: true
+                              });
           setBook((prevBook) => ({
             ...prevBook,
             quantity: prevBook.quantity - 1,
           }));
           // Close the modal
           document.getElementById('borrow_modal').close();
+          navigate('/borrowedBooks');
         } else if (data.message === 'Book is out of stock') {
           alert('Sorry, this book is out of stock.');
         }

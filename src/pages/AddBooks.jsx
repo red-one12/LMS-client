@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const AddBooks = () => {
   const { user } = useContext(AuthContext);
@@ -26,13 +27,13 @@ const AddBooks = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validate required fields
+   
     if (!bookData.image || !bookData.name || !bookData.author || !bookData.description) {
       alert("Please fill in all the required fields.");
       return;
     }
 
-    // Add user association
+    
     const bookToSubmit = { ...bookData, addedBy: user?.email };
     setIsLoading(true);
 
@@ -45,7 +46,11 @@ const AddBooks = () => {
       .then((data) => {
         setIsLoading(false);
         if (data.insertedId) {
-          alert("Book added successfully!");
+         Swal.fire({
+                     title: "Book Added",
+                     icon: "success",
+                     draggable: true
+                   });
           setBookData({
             image: "",
             name: "",

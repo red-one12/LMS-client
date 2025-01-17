@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const BorrowedBooks = () => {
   const { user } = useContext(AuthContext);
@@ -31,7 +32,11 @@ const BorrowedBooks = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.message === "Book returned successfully") {
-          // Update the state to remove the returned book
+          Swal.fire({
+                      title: "Book Returned Successfully!",
+                      icon: "success",
+                      draggable: true
+                    });
           setBorrowedBooks((prevBooks) =>
             prevBooks.filter((book) => book._id !== id)
           );

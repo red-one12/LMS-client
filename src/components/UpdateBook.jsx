@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UpdateBook = () => {
   const { id } = useParams();
@@ -32,7 +33,11 @@ const UpdateBook = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.result.modifiedCount > 0) {
-          alert("Book updated successfully!");
+          Swal.fire({
+            title: "Updated",
+            icon: "success",
+            draggable: true
+          });
           navigate("/allBooks");
         }
       });
