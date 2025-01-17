@@ -29,13 +29,13 @@ const DetailsBook = () => {
 
   const handleBorrow = (e) => {
     e.preventDefault();
-  
+    
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
     const issuedDate = form.todaysDate.value;
     const returnDate = form.returnDate.value;
-  
+    
     const borrowBookInfo = { bookId, name, email, issuedDate, returnDate };
   
     fetch('http://localhost:5000/borrowedBooks', {
@@ -49,10 +49,10 @@ const DetailsBook = () => {
       .then((data) => {
         if (data.insertResult?.insertedId) {
           Swal.fire({
-                                title: "Book Borrowed Successfully!",
-                                icon: "success",
-                                draggable: true
-                              });
+            title: "Book Borrowed Successfully!",
+            icon: "success",
+            draggable: true
+          });
           setBook((prevBook) => ({
             ...prevBook,
             quantity: prevBook.quantity - 1,
@@ -62,12 +62,15 @@ const DetailsBook = () => {
           navigate('/borrowedBooks');
         } else if (data.message === 'Book is out of stock') {
           alert('Sorry, this book is out of stock.');
+        } else if (data.message === 'You have already borrowed this book') {
+          alert('You have already borrowed this book.');
         }
       })
       .catch((error) => {
         console.error('Error:', error);
       });
   };
+  
   
 
   if (!user) {
