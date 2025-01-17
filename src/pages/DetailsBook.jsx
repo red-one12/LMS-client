@@ -8,6 +8,14 @@ const DetailsBook = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
+
+  const [todaysDate, setTodaysDate] = useState("");
+
+  useEffect(() => {
+    const today = new Date().toISOString().split("T")[0]; 
+    setTodaysDate(today);
+  }, []);
+
   const bookId = id;
 
   useEffect(() => {
@@ -24,9 +32,10 @@ const DetailsBook = () => {
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
+    const issuedDate = form.todaysDate.value;
     const returnDate = form.returnDate.value;
   
-    const borrowBookInfo = { bookId, name, email, returnDate };
+    const borrowBookInfo = { bookId, name, email, issuedDate, returnDate };
   
     fetch('http://localhost:5000/borrowedBooks', {
       method: 'POST',
@@ -111,6 +120,18 @@ const DetailsBook = () => {
         value={user?.email || ''}
         readOnly
         className="input input-bordered mb-2 w-full"
+      />
+    </div>
+
+    <div>
+      <label className="font-semibold">Today's Date:</label>
+      <input
+        type="date"
+        name="todaysDate"
+        className="input input-bordered mb-4"
+        required
+        value={todaysDate}
+        readOnly 
       />
     </div>
 
