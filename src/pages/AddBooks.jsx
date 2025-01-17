@@ -2,20 +2,19 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 
 const AddBooks = () => {
-  const { user } = useContext(AuthContext); 
+  const { user } = useContext(AuthContext);
 
-
-
-  
   const [bookData, setBookData] = useState({
     image: "",
     name: "",
     quantity: 1,
     author: "",
-    category: "Novel",
+    category: "Science",
     description: "",
     rating: 1,
   });
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const categories = ["Science", "Fiction", "History", "Biography"];
 
@@ -27,22 +26,24 @@ const AddBooks = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-
-
-
+    // Validate required fields
     if (!bookData.image || !bookData.name || !bookData.author || !bookData.description) {
       alert("Please fill in all the required fields.");
       return;
     }
 
+    // Add user association
+    const bookToSubmit = { ...bookData, addedBy: user?.email };
+    setIsLoading(true);
 
     fetch("http://localhost:5000/books", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(bookData),
+      body: JSON.stringify(bookToSubmit),
     })
       .then((res) => res.json())
       .then((data) => {
+        setIsLoading(false);
         if (data.insertedId) {
           alert("Book added successfully!");
           setBookData({
@@ -50,7 +51,7 @@ const AddBooks = () => {
             name: "",
             quantity: 1,
             author: "",
-            category: "Novel",
+            category: "Science",
             description: "",
             rating: 1,
           });
@@ -59,6 +60,7 @@ const AddBooks = () => {
         }
       })
       .catch((err) => {
+        setIsLoading(false);
         console.error(err);
         alert("Failed to add the book.");
       });
@@ -165,8 +167,8 @@ const AddBooks = () => {
           />
         </div>
 
-        <button type="submit" className="btn btn-accent w-full">
-          Add Book
+        <button type="submit" className="btn btn-accent w-full" disabled={isLoading}>
+          {isLoading ? "Adding Book..." : "Add Book"}
         </button>
       </form>
     </div>
