@@ -4,6 +4,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import Lottie from "lottie-react";
 import LottieLogin from "../assets/Lottie/lottieLogin.json";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { loginUser, googleLogin } = useContext(AuthContext);
@@ -18,11 +19,20 @@ const Login = () => {
     loginUser(email, password)
       .then((result) => {
         console.log(result.user);
-        const user = {email: email}
-        axios.post('http://localhost:5000/jwt', user, {withCredentials: true})
-        .then(res => {
-          console.log(res.data);          
-        })
+        Swal.fire({
+                                              title: "Successfully Login",
+                                              icon: "success",
+                                              draggable: true
+                                            });
+        navigateToHome("/");
+        const user = { email: email };
+        axios
+          .post("https://lms-server-gold.vercel.app/jwt", user, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log(res.data);
+          });
         // navigateToHome("/");
       })
       .catch((error) => {
@@ -34,6 +44,11 @@ const Login = () => {
     googleLogin()
       .then((result) => {
         console.log("successful", result);
+        Swal.fire({
+          title: "Successfully Login",
+          icon: "success",
+          draggable: true
+        });
         navigateToHome("/");
       })
       .catch((error) => {
@@ -51,7 +66,9 @@ const Login = () => {
 
         {/* Login Form */}
         <div className="w-full md:w-1/2">
-          <h1 className="text-5xl font-bold mb-4 text-center text-[#4b3bff]">Login</h1>
+          <h1 className="text-5xl font-bold mb-4 text-center text-[#4b3bff]">
+            Login
+          </h1>
           <form onSubmit={handleLogin}>
             <div className="mb-4">
               <label

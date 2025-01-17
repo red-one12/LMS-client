@@ -13,7 +13,9 @@ const Home = () => {
       <BookCategories></BookCategories>
 
 
+      <div className="my-10">
       <FeaturedBooks></FeaturedBooks>
+      </div>
 
 
 

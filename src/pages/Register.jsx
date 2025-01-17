@@ -1,13 +1,15 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import Lottie from "lottie-react";
 import RegLottie from "../assets/Lottie/lottieReg.json";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const { createNewUser, setUser } = useContext(AuthContext);
   const [error, setError] = useState("");
+  const navigateToHome = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -35,6 +37,12 @@ const Register = () => {
     createNewUser(email, password)
       .then((result) => {
         const user = result.user;
+        Swal.fire({
+                       title: "Registration Done!",
+                                                      icon: "success",
+                                                     draggable: true
+                                                    });
+        navigateToHome('/');
         return updateProfile(user, {
           displayName: name,
           photoURL: photoURL,

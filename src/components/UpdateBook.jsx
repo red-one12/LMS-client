@@ -8,7 +8,7 @@ const UpdateBook = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/book/${id}`)
+    fetch(`https://lms-server-gold.vercel.app/book/${id}`)
       .then((res) => res.json())
       .then((data) => setBook(data));
   }, [id]);
@@ -25,7 +25,7 @@ const UpdateBook = () => {
       rating: parseFloat(form.rating.value),
     };
 
-    fetch(`http://localhost:5000/book/${id}`, {
+    fetch(`https://lms-server-gold.vercel.app/book/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedBook),
@@ -36,7 +36,7 @@ const UpdateBook = () => {
           Swal.fire({
             title: "Updated",
             icon: "success",
-            draggable: true
+            draggable: true,
           });
           navigate("/allBooks");
         }

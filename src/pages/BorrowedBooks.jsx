@@ -5,10 +5,10 @@ import Swal from "sweetalert2";
 const BorrowedBooks = () => {
   const { user } = useContext(AuthContext);
   const [borrowedBooks, setBorrowedBooks] = useState([]);
-  const [isReturning, setIsReturning] = useState(null); 
+  const [isReturning, setIsReturning] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/borrowedBooks`)
+    fetch(`https://lms-server-gold.vercel.app/borrowedBooks`)
       .then((res) => res.json())
       .then((data) => {
         const userBorrowedBooks = data.filter(
@@ -23,7 +23,7 @@ const BorrowedBooks = () => {
 
   const handleReturnBook = (id) => {
     setIsReturning(id);
-    fetch(`http://localhost:5000/borrowedBooks/${id}`, {
+    fetch(`https://lms-server-gold.vercel.app/borrowedBooks/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -33,10 +33,10 @@ const BorrowedBooks = () => {
       .then((data) => {
         if (data.message === "Book returned successfully") {
           Swal.fire({
-                      title: "Book Returned Successfully!",
-                      icon: "success",
-                      draggable: true
-                    });
+            title: "Book Returned Successfully!",
+            icon: "success",
+            draggable: true,
+          });
           setBorrowedBooks((prevBooks) =>
             prevBooks.filter((book) => book._id !== id)
           );
@@ -78,7 +78,7 @@ const BorrowedBooks = () => {
                 <button
                   className="btn btn-error mt-4"
                   onClick={() => handleReturnBook(borrowedBook._id)}
-                  disabled={isReturning === borrowedBook._id} 
+                  disabled={isReturning === borrowedBook._id}
                 >
                   {isReturning === borrowedBook._id ? "Returning..." : "Return"}
                 </button>

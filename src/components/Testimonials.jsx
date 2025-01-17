@@ -1,5 +1,6 @@
 import React from "react";
 import { FaUser } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const Testimonials = () => {
   return (
@@ -12,34 +13,48 @@ const Testimonials = () => {
             name: "Radoan",
             feedback:
               "An amazing collection of books. I found exactly what I was looking for!",
-            
           },
           {
             id: 2,
             name: "Rakib",
             feedback: "Great service and excellent selection of categories.",
-            
           },
           {
             id: 3,
             name: "Rabbi",
             feedback: "Easy to navigate and borrow books. Highly recommended!",
-            
           },
-        ].map((testimonial) => (
-          <div
+        ].map((testimonial, index) => (
+          <motion.div
             key={testimonial.id}
-            className="card bg-white shadow-md hover:shadow-lg transition duration-300 rounded-lg p-4 flex flex-col items-center"
+            className="card shadow-md hover:shadow-lg transition duration-300 rounded-lg p-4 flex flex-col items-center"
+            animate={{
+              y: index % 2 === 0 ? [0, -20, 0] : [0, 20, 0], // Alternating directions
+              backgroundColor: ["#ffffff", "#a7fcff", "#ffffff"], // Color change
+            }}
+            transition={{
+              y: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 2,
+                ease: "easeInOut",
+              },
+              backgroundColor: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 2,
+                ease: "easeInOut",
+              },
+            }}
           >
             <div className="flex items-center gap-2">
-            <FaUser />
-
-<h3 className="text-lg font-semibold">{testimonial.name}</h3>
+              <FaUser />
+              <h3 className="text-lg font-semibold">{testimonial.name}</h3>
             </div>
             <p className="text-gray-600 mt-2 text-center">
               "{testimonial.feedback}"
             </p>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

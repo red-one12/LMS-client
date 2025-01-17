@@ -9,7 +9,7 @@ const AllBooks = () => {
   const [showAvailable, setShowAvailable] = useState(false); // Default: show all books
 
   useEffect(() => {
-    fetch("http://localhost:5000/books")
+    fetch("https://lms-server-gold.vercel.app/books")
       .then((res) => res.json())
       .then((data) => {
         setBooks(data);

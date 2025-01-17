@@ -27,17 +27,20 @@ const AddBooks = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-   
-    if (!bookData.image || !bookData.name || !bookData.author || !bookData.description) {
+    if (
+      !bookData.image ||
+      !bookData.name ||
+      !bookData.author ||
+      !bookData.description
+    ) {
       alert("Please fill in all the required fields.");
       return;
     }
 
-    
     const bookToSubmit = { ...bookData, addedBy: user?.email };
     setIsLoading(true);
 
-    fetch("http://localhost:5000/books", {
+    fetch("https://lms-server-gold.vercel.app/books", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(bookToSubmit),
@@ -46,11 +49,11 @@ const AddBooks = () => {
       .then((data) => {
         setIsLoading(false);
         if (data.insertedId) {
-         Swal.fire({
-                     title: "Book Added",
-                     icon: "success",
-                     draggable: true
-                   });
+          Swal.fire({
+            title: "Book Added",
+            icon: "success",
+            draggable: true,
+          });
           setBookData({
             image: "",
             name: "",
@@ -76,7 +79,9 @@ const AddBooks = () => {
       <h2 className="text-2xl font-bold mb-4">Add a New Book</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block font-semibold mb-1">Book Cover Image URL</label>
+          <label className="block font-semibold mb-1">
+            Book Cover Image URL
+          </label>
           <input
             type="text"
             name="image"
@@ -172,7 +177,11 @@ const AddBooks = () => {
           />
         </div>
 
-        <button type="submit" className="btn btn-accent w-full" disabled={isLoading}>
+        <button
+          type="submit"
+          className="btn btn-accent w-full"
+          disabled={isLoading}
+        >
           {isLoading ? "Adding Book..." : "Add Book"}
         </button>
       </form>
