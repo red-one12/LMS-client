@@ -8,18 +8,56 @@ const DetailsBook = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const bookId = id;
+
   useEffect(() => {
-    fetch(`http://localhost:5000/book/${id}`)
+    fetch(`http://localhost:5000/book/${bookId}`)
       .then((res) => res.json())
       .then((data) => {
         setBook(data);
       });
-  }, [id]);
+  }, [bookId]);
 
+  const handleBorrow = (e) => {
+    e.preventDefault();
+  
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const returnDate = form.returnDate.value;
+  
+    const borrowBookInfo = { bookId, name, email, returnDate };
+  
+    fetch('http://localhost:5000/borrowedBooks', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(borrowBookInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertResult?.insertedId) {
+          alert('Book borrowed successfully');
+          // Decrease quantity locally to update UI
+          setBook((prevBook) => ({
+            ...prevBook,
+            quantity: prevBook.quantity - 1,
+          }));
+          // Close the modal
+          document.getElementById('borrow_modal').close();
+        } else if (data.message === 'Book is out of stock') {
+          alert('Sorry, this book is out of stock.');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
   
 
   if (!user) {
-    navigate("/login");
+    navigate('/login');
     return null;
   }
 
@@ -42,62 +80,65 @@ const DetailsBook = () => {
           <p className="text-yellow-500 font-semibold">Rating: {book.rating}</p>
 
           <button
-            onClick={() => document.getElementById("borrow_modal").showModal()}
+            onClick={() => document.getElementById('borrow_modal').showModal()}
             className="btn btn-accent mt-4"
             disabled={book.quantity === 0}
           >
-            Borrow
+            {book.quantity === 0 ? 'Out of Stock' : 'Borrow'}
           </button>
 
           <dialog id="borrow_modal" className="modal modal-bottom sm:modal-middle">
-            <form className="modal-box">
-              <h3 className="font-bold text-lg">Borrow Book</h3>
-              <p className="py-4">Fill out the form to borrow this book:</p>
+  <form onSubmit={handleBorrow} className="modal-box">
+    <h3 className="font-bold text-lg">Borrow Book</h3>
+    <p className="py-4">Fill out the form to borrow this book:</p>
 
-              <div className="flex items-center">
-                <label className="font-semibold">Name:</label>
-                <input
-                  type="text"
-                  value={user?.displayName || ""}
-                  readOnly
-                  className="input input-bordered mb-2 w-full"
-                />
-              </div>
+    <div className="flex items-center">
+      <label className="font-semibold">Name:</label>
+      <input
+        type="text"
+        name="name"
+        value={user?.displayName || ''}
+        readOnly
+        className="input input-bordered mb-2 w-full"
+      />
+    </div>
 
-              <div className="flex items-center">
-                <label className="font-semibold">Email:</label>
-                <input
-                  type="email"
-                  value={user?.email || ""}
-                  readOnly
-                  className="input input-bordered mb-2 w-full"
-                />
-              </div>
+    <div className="flex items-center">
+      <label className="font-semibold">Email:</label>
+      <input
+        type="email"
+        name="email"
+        value={user?.email || ''}
+        readOnly
+        className="input input-bordered mb-2 w-full"
+      />
+    </div>
 
-              <div>
-                <label className="font-semibold">Return Date:</label>
-                <input
-                  type="date"
-                  name="returnDate"
-                  className="input input-bordered mb-4"
-                  required
-                />
-              </div>
+    <div>
+      <label className="font-semibold">Return Date:</label>
+      <input
+        type="date"
+        name="returnDate"
+        className="input input-bordered mb-4"
+        required
+      />
+    </div>
 
-              <div className="modal-action">
-                <button type="submit" className="btn btn-primary">
-                  Borrow
-                </button>
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={() => document.getElementById("borrow_modal").close()}
-                >
-                  Close
-                </button>
-              </div>
-            </form>
-          </dialog>
+    <div className="modal-action">
+      <button type="submit" className="btn btn-primary">
+        Borrow
+      </button>
+      <button
+        type="button"
+        className="btn"
+        onClick={() => document.getElementById('borrow_modal').close()}
+      >
+        Close
+      </button>
+    </div>
+  </form>
+</dialog>
+
         </div>
       </div>
     </div>
