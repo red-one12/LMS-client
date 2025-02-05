@@ -1,22 +1,59 @@
-
-# LMS
-Link of live site: https://lm-system-348d1.web.app/
-
-# Purpose
-The purpose of this project is to display featured books in an engaging way, using smooth motion effects to make the UI interactive and visually appealing. It encourages users to explore books or log in for more details, enhancing user engagement and platform navigation.
-
-# Key Features
-1. **Book Details:** Displays book info and an image.
-2. **Borrowing Books:** Users borrow books, which decreases quantity.
-3. **Authentication:** Protects book details page for logged-in users.
-4. **Borrowed Books Tracking:** Saves borrowed book data in MongoDB.
-5. **Modal Form:** For borrowing books.
-6. **Real-Time Updates:** UI updates when a book is borrowed.
-
-# NPM Package That I have use
-1. **react-framer-motion:** For animating different item.
-2. **react-tooltip:** For showing data by hover effect.
+# LMS 🚀
 
 
 
+![image alt](https://github.com/red-one12/huntify-c/blob/4d33dfe4f6e6939a5539f99f2dffb1830e365fda/Screenshot%20(7).png)
 
+
+The Library Management System project is a website where users can browse, borrow, and return books. Users can log in or register to access private features, like adding and updating books. The site will be mobile-friendly and secure, with features like book filters, dynamic titles, and notifications for actions. Technologies like React, MongoDB, Firebase, and JWT will be used for building the system.
+
+🔗 **Live Demo**: [LMS](https://lm-system-348d1.web.app/)
+
+---
+
+## 📌 Features
+
+- **User Authentication**: Login and register with email/password or social login (Google/GitHub).
+- **Book Management**: Browse, add, update, and view books by category.
+- **Borrowing System**: Borrow and return books with automatic quantity updates.
+- **Private Routes**: Restricted pages for logged-in users (e.g., Borrowed Books, Add Book).
+- **Responsive Design**: Mobile-friendly layout.
+- **Notifications**: Toast messages for actions like adding books or borrowing.
+- **Book Filters**: Filter books by availability and toggle views (card or table).
+
+---
+
+## 🛠 Tech Stack
+
+**Frontend**: React, Tailwind CSS  
+**Backend**: Node.js, Express  
+**Database**: MongoDB  
+**Authentication**: Firebase (Email/Google sign-in)  
+
+---
+
+## 📦 Dependencies
+
+### **Frontend**
+- React
+- React Router
+- Tailwind CSS
+- Firebase Authentication
+
+### **Backend**
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- Firebase Admin SDK
+
+---
+
+## 🏗 Installation & Setup
+
+Follow these steps to run the project locally:
+
+### 1️⃣ Clone the repository
+```sh
+git clone https://github.com/your-repo/lms.git
+cd lms
