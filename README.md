@@ -2,7 +2,7 @@
 
 
 
-![image alt](https://github.com/red-one12/huntify-c/blob/4d33dfe4f6e6939a5539f99f2dffb1830e365fda/Screenshot%20(7).png)
+![image alt](https://github.com/red-one12/LMS-client/blob/a929b3768a185faabacd254256909a066a681d72/Screenshot%20(8).png)
 
 
 The Library Management System project is a website where users can browse, borrow, and return books. Users can log in or register to access private features, like adding and updating books. The site will be mobile-friendly and secure, with features like book filters, dynamic titles, and notifications for actions. Technologies like React, MongoDB, Firebase, and JWT will be used for building the system.
