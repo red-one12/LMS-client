@@ -116,7 +116,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-black"
           >
             {links}
           </ul>
@@ -131,7 +131,7 @@ const Navbar = () => {
       <div className="navbar-end flex gap-2">
       <button
           onClick={toggleTheme}
-          className="text-2xl mr-5 border-none text-white"
+          className="text-2xl md:mr-5 border-none text-white"
         >
           {theme === "light" ? (
             <CiLight />
@@ -153,7 +153,7 @@ const Navbar = () => {
         ) : (
           <>
             <Link to="/login">
-              <button className="btn bg-[#007BFF] border-none">Log In</button>
+              <button className="btn bg-[#007BFF] border-none">Login</button>
             </Link>
             <Link to="/register">
               <button className="btn">Register</button>
