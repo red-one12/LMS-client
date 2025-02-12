@@ -3,10 +3,12 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { Tooltip } from 'react-tooltip'
 import Swal from "sweetalert2";
+import { ThemeContext } from "../provider/ThemeProvider";
+import { CiDark, CiLight } from "react-icons/ci";
 
 const Navbar = () => {
   const { user, logOutUser } = useContext(AuthContext);
-  // console.log(user);
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const navigateToHome = useNavigate();
 
   const handleLogout = () => {
@@ -127,6 +129,16 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-end flex gap-2">
+      <button
+          onClick={toggleTheme}
+          className="text-2xl mr-5 border-none text-white"
+        >
+          {theme === "light" ? (
+            <CiLight />
+          ) : (
+            <CiDark />
+          )}
+        </button>
         {user ? (
           <>
             <img src={user.photoURL} className="w-8 h-8 rounded-full" 

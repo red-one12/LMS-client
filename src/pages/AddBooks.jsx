@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
+import { div } from "motion/react-client";
 
 const AddBooks = () => {
   const { user } = useContext(AuthContext);
@@ -75,7 +76,8 @@ const AddBooks = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+    <div className="class-add-book py-10">
+      <div className="max-w-lg mx-auto p-6 bg-white shadow-lg rounded-lg">
       <h2 className="text-2xl font-bold mb-4">Add a New Book</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -185,6 +187,7 @@ const AddBooks = () => {
           {isLoading ? "Adding Book..." : "Add Book"}
         </button>
       </form>
+    </div>
     </div>
   );
 };

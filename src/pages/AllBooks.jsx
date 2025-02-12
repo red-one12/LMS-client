@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
+import { div } from "motion/react-client";
 
 const AllBooks = () => {
   const [books, setBooks] = useState([]);
@@ -43,8 +44,9 @@ const AllBooks = () => {
   };
 
   return (
-    <div className="container max-w-7xl mx-auto mt-8 px-4">
-      <h1 className="text-3xl font-bold mb-6 text-center">All Books</h1>
+    <div className="class-all-books ">
+      <div className="container max-w-7xl mx-auto pt-8 px-4">
+      <h1 className="class-all-books-text text-3xl font-bold mb-6 text-center">All Books</h1>
 
       {/* Filter and Sorting Controls */}
       <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
@@ -91,7 +93,7 @@ const AllBooks = () => {
                 alt={book.name}
                 className="w-full h-48 object-cover rounded mb-4"
               />
-              <h2 className="text-xl font-semibold">{book.name}</h2>
+              <h2 className="class-book-name text-xl font-semibold">{book.name}</h2>
               <p className="text-gray-600">Author: {book.author}</p>
               <p className="text-gray-500">Category: {book.category}</p>
               <div className="flex items-center mt-2">
@@ -122,16 +124,16 @@ const AllBooks = () => {
         </div>
       ) : (
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-300">
+          <table className="class-book-table-view min-w-full bg-white border border-gray-300">
             <thead>
               <tr>
-                <th className="border px-4 py-2">Image</th>
-                <th className="border px-4 py-2">Name</th>
-                <th className="border px-4 py-2">Author</th>
-                <th className="border px-4 py-2">Category</th>
-                <th className="border px-4 py-2">Rating</th>
-                <th className="border px-4 py-2">Quantity</th>
-                <th className="border px-4 py-2">Actions</th>
+                <th className="class-table-title border px-4 py-2">Image</th>
+                <th className="class-table-title border px-4 py-2">Name</th>
+                <th className="class-table-title border px-4 py-2">Author</th>
+                <th className="class-table-title border px-4 py-2">Category</th>
+                <th className="class-table-title border px-4 py-2">Rating</th>
+                <th className="class-table-title border px-4 py-2">Quantity</th>
+                <th className="class-table-title border px-4 py-2">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -177,6 +179,7 @@ const AllBooks = () => {
           </table>
         </div>
       )}
+    </div>
     </div>
   );
 };

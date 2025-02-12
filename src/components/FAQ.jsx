@@ -2,7 +2,7 @@ import faq from '../assets/photo/faq.png';
 
 const FAQ = () => {
   return (
-    <div className='flex flex-col md:flex-row justify-center items-center gap-5 p-5'>
+    <div className='flex flex-col md:flex-row justify-center items-center gap-5 p-5 bg-[#f5f5f5] my-10'>
       {/* Image Section */}
       <div className="w-full md:w-1/3">
         <img src={faq} alt="FAQ" className="w-full" />

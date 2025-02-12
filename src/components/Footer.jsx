@@ -3,12 +3,12 @@ import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-6 mt-10">
-      <div className="container mx-auto px-4">
+    <footer className="bg-gray-800 text-white py-10">
+      <div className="container max-w-7xl mx-auto py-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {/* Section 1: Logo and Description */}
           <div className="flex flex-col items-center sm:items-start">
-            <h2 className="text-3xl font-semibold text-yellow-400">LMS</h2>
+            <h2 className="text-3xl font-semibold">LMS</h2>
             <p className="mt-2 text-gray-400">
               We provide 1000+ of different kinds of books. Everyone can easily borrow a book for a time and return it to LMS.
             </p>
