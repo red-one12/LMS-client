@@ -1,4 +1,5 @@
 import BookCategories from "../components/BookCategories";
+import ContactUs from "../components/ContactUs";
 import FAQ from "../components/FAQ";
 import FeaturedBooks from "../components/FeaturedBooks";
 import Slider from "../components/Slider";
@@ -23,6 +24,11 @@ const Home = () => {
       <Testimonials></Testimonials>
       <div className="max-w-7xl mx-auto mt-10">
         <FAQ></FAQ>
+      </div>
+
+
+      <div className="max-w-7xl mx-auto">
+        <ContactUs></ContactUs>
       </div>
     </div>
   );
