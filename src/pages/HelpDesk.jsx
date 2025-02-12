@@ -45,8 +45,9 @@ const HelpDesk = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto">
-      <h1 className="text-5xl font-bold text-center mt-10">
+    <div className="class-help-desk">
+      <div className="max-w-7xl mx-auto pb-60">
+      <h1 className="text-5xl font-bold text-center pt-10">
         Drop Your <span className="text-red-500">Problem</span> Here
       </h1>
 
@@ -55,7 +56,7 @@ const HelpDesk = () => {
           <Lottie animationData={helpLottie} loop={true} />
         </div>
 
-        <div className="w-2/3">
+        <div className="w-2/3 bg-white rounded-lg">
           <form onSubmit={handleHelpSubmit} className="card-body">
             {/* Problem Input */}
             <div className="form-control">
@@ -95,6 +96,7 @@ const HelpDesk = () => {
           </form>
         </div>
       </div>
+    </div>
     </div>
   );
 };

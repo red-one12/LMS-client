@@ -42,4 +42,28 @@ html.dark .class-book-table-view {
 html.dark .class-add-book {
   background-color: #1f2937;
 }
+html.dark .class-borrowed-books {
+  background-color: #1f2937;
+}
+html.dark .class-borrowed-book-text{
+  color: white;
+}
 
+
+html.dark .class-help-desk {
+  background-color: #1f2937;
+}
+html.dark .class-update-books {
+  background-color: #1f2937;
+}
+html.dark .class-update-book-text {
+  color: white;
+}
+
+html.dark .class-category-books {
+  background-color: #1f2937;
+}
+
+html.dark .class-book-title-text {
+  color: white;
+}

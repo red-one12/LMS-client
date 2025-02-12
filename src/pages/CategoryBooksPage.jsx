@@ -12,8 +12,9 @@ const CategoryBooksPage = () => {
   }, [category]);
 
   return (
-    <div className="mt-10">
-      <h1 className="text-3xl font-bold text-center">{category} Books</h1>
+    <div className="class-category-books">
+      <div className="max-w-7xl mx-auto pt-10">
+      <h1 className="class-book-title-text text-3xl font-bold text-center">{category} Books</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
         {books.map((book) => (
           <div
@@ -40,6 +41,7 @@ const CategoryBooksPage = () => {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 };

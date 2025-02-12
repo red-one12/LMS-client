@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
+import { div } from "motion/react-client";
 
 const BorrowedBooks = () => {
   const { user } = useContext(AuthContext);
@@ -51,12 +52,14 @@ const BorrowedBooks = () => {
   };
 
   return (
-    <div className="container mx-auto mt-10">
-      <h1 className="text-2xl font-bold mb-4">My Borrowed Books</h1>
+
+    <div className="class-borrowed-books pt-10 pb-60">
+      <div className="container max-w-7xl mx-auto">
+      <h1 className="class-borrowed-book-text text-2xl font-bold mb-4">My Borrowed Books</h1>
       {borrowedBooks.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {borrowedBooks.map((borrowedBook) => (
-            <div key={borrowedBook._id} className="card shadow-lg">
+            <div key={borrowedBook._id} className="card shadow-lg bg-white">
               <img
                 src={borrowedBook.bookDetails?.image}
                 alt={borrowedBook.bookDetails?.name}
@@ -89,6 +92,7 @@ const BorrowedBooks = () => {
       ) : (
         <p>You have not borrowed any books yet.</p>
       )}
+    </div>
     </div>
   );
 };
