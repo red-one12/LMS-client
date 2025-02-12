@@ -13,6 +13,7 @@ import DetailsBook from "../pages/DetailsBook";
 import UpdateBook from "../components/UpdateBook";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../pages/ErrorPage";
+import HelpDesk from "../pages/HelpDesk";
 
 
 const router = createBrowserRouter([
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: '/updateBook/:id',
         element: <UpdateBook></UpdateBook>
+      },
+      {
+        path: '/helpDesk',
+        element: <HelpDesk></HelpDesk>
       }
     ]
   },

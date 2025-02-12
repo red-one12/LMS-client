@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const Testimonials = () => {
   return (
-    <div className="testimonials bg-blue-50 p-6 rounded-lg shadow-lg">
+    <div className="testimonials bg-blue-50 p-6 rounded-lg shadow-lg max-w-7xl mx-auto">
       <h2 className="text-3xl font-bold mb-6 text-center">What Readers Say</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {[

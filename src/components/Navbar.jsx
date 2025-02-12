@@ -1,17 +1,19 @@
 import { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { Tooltip } from 'react-tooltip'
 import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, logOutUser } = useContext(AuthContext);
-  console.log(user);
+  // console.log(user);
+  const navigateToHome = useNavigate();
 
   const handleLogout = () => {
     logOutUser()
     .then(() => {
-      console.log('success log out');
+      // console.log('success log out');
+      navigateToHome('/');
       Swal.fire({
                                       title: "Logout Done!",
                                       icon: "success",
@@ -74,12 +76,24 @@ const Navbar = () => {
           Borrowed Books
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to={user ? "/helpDesk" : "/register"}
+          className={({ isActive }) =>
+            isActive
+              ? "text-white font-semibold border-b-2 border-white pb-1"
+              : "transition duration-300"
+          }
+        >
+          Help Desk
+        </NavLink>
+      </li>
     </>
   );
   
 
   return (
-    <div className="navbar bg-gray-800 text-white">
+    <div className="navbar bg-gray-800 text-white sticky top-0 z-50 shadow-md">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
