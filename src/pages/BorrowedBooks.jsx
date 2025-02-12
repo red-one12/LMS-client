@@ -53,7 +53,7 @@ const BorrowedBooks = () => {
 
   return (
 
-    <div className="class-borrowed-books pt-10 pb-60">
+    <div className="class-borrowed-books pt-10 pb-[450px]">
       <div className="container max-w-7xl mx-auto">
       <h1 className="class-borrowed-book-text text-2xl font-bold mb-4">My Borrowed Books</h1>
       {borrowedBooks.length > 0 ? (
