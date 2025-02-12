@@ -30,7 +30,9 @@ const Navbar = () => {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            isActive ? "text-[#4CAF50]" : "hover:text-[#4CAF50]"
+            isActive
+              ? "text-white font-semibold border-b-2 border-white pb-1"
+              : "transition duration-300"
           }
         >
           Home
@@ -38,9 +40,11 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to={user ? '/allBooks' : '/register'}
+          to={user ? "/allBooks" : "/register"}
           className={({ isActive }) =>
-            isActive ? "text-[#4CAF50]" : "hover:text-[#4CAF50]"
+            isActive
+              ? "text-white font-semibold border-b-2 border-white pb-1"
+              : "transition duration-300"
           }
         >
           All Books
@@ -48,9 +52,11 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to={user ? '/addBooks' : '/register'}
+          to={user ? "/addBooks" : "/register"}
           className={({ isActive }) =>
-            isActive ? "text-[#4CAF50]" : "hover:text-[#4CAF50]"
+            isActive
+              ? "text-white font-semibold border-b-2 border-white pb-1"
+              : "transition duration-300"
           }
         >
           Add Books
@@ -58,9 +64,11 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to={user ? '/borrowedBooks' : '/register'}
+          to={user ? "/borrowedBooks" : "/register"}
           className={({ isActive }) =>
-            isActive ? "text-[#4CAF50]" : "hover:text-[#4CAF50]"
+            isActive
+              ? "text-white font-semibold border-b-2 border-white pb-1"
+              : "transition duration-300"
           }
         >
           Borrowed Books
@@ -68,9 +76,10 @@ const Navbar = () => {
       </li>
     </>
   );
+  
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-gray-800 text-white">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -96,7 +105,7 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-2xl font-bold">LMS</a>
+        <a className="text-2xl font-bold">LMS</a>
       </div>
 
       <div className="navbar-center hidden lg:flex">
