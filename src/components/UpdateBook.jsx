@@ -45,7 +45,7 @@ const UpdateBook = () => {
 
   return (
     <div className="container mx-auto mt-8">
-      <h1 className="text-3xl font-bold mb-6">Update Book</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center">Update Book</h1>
       <form
         onSubmit={handleUpdate}
         className="grid grid-cols-1 gap-4 max-w-md mx-auto"

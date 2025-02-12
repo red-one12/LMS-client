@@ -7,6 +7,7 @@ const AllBooks = () => {
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [viewMode, setViewMode] = useState("card"); // Default view is Card View
   const [showAvailable, setShowAvailable] = useState(false); // Default: show all books
+  const [sortOrder, setSortOrder] = useState("default"); // Default sorting
 
   useEffect(() => {
     fetch("https://lms-server-gold.vercel.app/books")
@@ -26,23 +27,49 @@ const AllBooks = () => {
     setShowAvailable(!showAvailable); // Toggle filter state
   };
 
+  const handleSort = (order) => {
+    let sortedBooks = [...filteredBooks];
+
+    if (order === "high-to-low") {
+      sortedBooks.sort((a, b) => b.rating - a.rating);
+    } else if (order === "low-to-high") {
+      sortedBooks.sort((a, b) => a.rating - b.rating);
+    } else {
+      sortedBooks = [...books]; // Default order
+    }
+
+    setFilteredBooks(sortedBooks);
+    setSortOrder(order);
+  };
+
   return (
-    <div className="container mx-auto mt-8 px-4">
+    <div className="container max-w-7xl mx-auto mt-8 px-4">
       <h1 className="text-3xl font-bold mb-6 text-center">All Books</h1>
 
-      {/* Filter and View Mode Controls */}
+      {/* Filter and Sorting Controls */}
       <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
         {/* Show Available Books Button */}
         <button
           onClick={handleFilter}
-          className="btn btn-primary w-full md:w-auto"
+          className="btn bg-sky-500 w-full md:w-auto"
         >
           {showAvailable ? "Show All Books" : "Show Available Books"}
         </button>
 
-        {/* Dropdown to toggle view */}
+        {/* Sorting Dropdown */}
         <select
-          className="border p-2 rounded shadow focus:outline-none w-full md:w-auto"
+          className="btn bg-sky-500 p-2 shadow focus:outline-none w-full md:w-auto"
+          value={sortOrder}
+          onChange={(e) => handleSort(e.target.value)}
+        >
+          <option value="default">Sort by Rating</option>
+          <option value="high-to-low">High to Low</option>
+          <option value="low-to-high">Low to High</option>
+        </select>
+
+        {/* View Mode Dropdown */}
+        <select
+          className="btn p-2 bg-sky-500 shadow focus:outline-none w-full md:w-auto"
           value={viewMode}
           onChange={(e) => setViewMode(e.target.value)}
         >
