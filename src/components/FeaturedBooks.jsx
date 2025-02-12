@@ -57,7 +57,7 @@ const FeaturedBooks = () => {
               <h3 className="text-xl font-semibold">{book.title}</h3>
 
               <Link to={user ? "/allBooks" : "/login"}>
-                <button className="btn btn-primary mt-4">Interested</button>
+                <button className="btn bg-sky-500 mt-4">Interested</button>
               </Link>
             </div>
           </motion.div>

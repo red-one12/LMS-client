@@ -60,7 +60,7 @@ const AllBooks = () => {
 
         {/* Sorting Dropdown */}
         <select
-          className="btn bg-sky-500 p-2 shadow focus:outline-none w-full md:w-auto"
+          className="btn bg-sky-500 p-2 w-full md:w-auto"
           value={sortOrder}
           onChange={(e) => handleSort(e.target.value)}
         >
@@ -71,7 +71,7 @@ const AllBooks = () => {
 
         {/* View Mode Dropdown */}
         <select
-          className="btn p-2 bg-sky-500 shadow focus:outline-none w-full md:w-auto"
+          className="btn p-2 bg-sky-500 w-full md:w-auto"
           value={viewMode}
           onChange={(e) => setViewMode(e.target.value)}
         >
